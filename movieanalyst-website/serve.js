@@ -40,7 +40,7 @@ function getAccessToken(req, res, next){
         req.access_token = res.body.access_token;
         next();
       } else {
-        res.send(401, ‘Unauthorized’);
+        res.send(401, 'Unauthorized');
       }
     })
 }
@@ -67,7 +67,8 @@ app.get('/movies', getAccessToken, function(req, res){
     })
 })
 
-// El proceso será el mismo para las rutas restantes. Nos aseguraremos de obtener el acess_token primero y luego hacer la solicitud a nuestra API para obtener los datos.
+// El proceso será el mismo para las rutas restantes. Nos aseguraremos de obtener
+// el acess_token primero y luego hacer la solicitud a nuestra API para obtener los datos.
 app.get('/authors', getAccessToken, function(req, res){
   request
     .get('http://localhost:8080/reviewers')
@@ -96,7 +97,9 @@ app.get('/publications', getAccessToken, function(req, res){
     })
 })
 
-// Hemos añadido la ruta pending, pero llamar a esta ruta desde la Web MovieAnalyst siempre resultará en un error 403 Forbidden ya que este cliente no tiene el alcance de administración necesaria para obtener los datos.
+// Hemos añadido la ruta pending, pero llamar a esta ruta desde la Web MovieAnalyst
+// siempre resultará en un error 403 Forbidden ya que este cliente no tiene el alcance
+// de administración necesaria para obtener los datos.
 app.get('/pending', getAccessToken, function(req, res){
   request
     .get('http://localhost:8080/pending')
